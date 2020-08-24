@@ -1,3 +1,5 @@
 snake
+*.exe
 .DS_Store
 snake.dSYM
+SDL2-2.0.12/

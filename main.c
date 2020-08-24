@@ -1,5 +1,4 @@
-#include <SDL2/SDL.h>
-#include <SDL2/SDL_image.h>
+#include <SDL.h>
 
 #include <stdlib.h>
 #include <stdio.h>
@@ -136,8 +135,8 @@ int main(int argc, char **argv)
 
     window = create_window(SCREEN_W, SCREEN_H, "Snake");
     renderer = create_renderer(window);
-    snake_img = create_image(renderer, "assets/snake.png");
-    apple_img = create_image(renderer, "assets/apple.png");
+    snake_img = create_image(renderer, "assets/snake.bmp");
+    apple_img = create_image(renderer, "assets/apple.bmp");
     SDL_Rect sprite_rect = { 0, 0, SPRITE_SIZE, SPRITE_SIZE };
 
     snake_body[0] = (struct point) { MAP_W / 2 - 1, MAP_H / 2 - 1 };
@@ -203,7 +202,6 @@ int main(int argc, char **argv)
     SDL_DestroyTexture(apple_img);
     SDL_DestroyRenderer(renderer);
     SDL_DestroyWindow(window);
-    IMG_Quit();
     SDL_Quit();
 
     return 0;

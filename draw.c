@@ -34,13 +34,20 @@ SDL_Renderer *create_renderer(SDL_Window * window)
 SDL_Texture *create_image(SDL_Renderer * renderer, const char *path)
 {
     SDL_Texture *texture;
-    texture = IMG_LoadTexture(renderer, path);
-
-    if (texture == NULL) {
-	fprintf(stderr, "%s : %s\n", "Error while creating SDL_Image",
-		path);
+    SDL_Surface *surface;
+    surface = SDL_LoadBMP(path);
+    if (surface == NULL) {
+	fprintf(stderr, "%s : %s\n", "Error while creating SDL_Surface", path);
 	exit(EXIT_FAILURE);
     }
+    texture = SDL_CreateTextureFromSurface(renderer, surface);
+
+    if (texture == NULL) {
+	fprintf(stderr, "%s : %s\n", "Error while creating SDL_Image", path);
+	exit(EXIT_FAILURE);
+    }
+
+    SDL_FreeSurface(surface);
 
     return texture;
 }
